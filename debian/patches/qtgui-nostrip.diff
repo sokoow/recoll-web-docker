@@ -1,0 +1,13 @@
+diff --git a/qtgui/recoll.pro.in b/qtgui/recoll.pro.in
+index f69aaa27..7e6c20c4 100644
+--- a/qtgui/recoll.pro.in
++++ b/qtgui/recoll.pro.in
+@@ -11,6 +11,8 @@ DEFINES += BUILDING_RECOLL
+ @QMAKE_ENABLE_WEBENGINE@ DEFINES += USING_WEBENGINE
+ 
+ QMAKE_CXXFLAGS += -std=c++11
++QMAKE_LFLAGS_RELEASE -= -s
++QMAKE_STRIP=echo
+ 
+ @QMAKE_ENABLE_ZEITGEIST@ QT += dbus
+ @QMAKE_ENABLE_ZEITGEIST@ QMAKE_CXXFLAGS += -DUSE_ZEITGEIST
