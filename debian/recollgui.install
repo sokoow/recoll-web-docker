@@ -1,5 +1,7 @@
-usr/bin/recoll
-usr/share/applications
-usr/share/icons
-usr/share/recoll/images
-usr/share/recoll/translations
+#usr/bin/recoll
+#usr/share/applications
+#usr/share/icons
+#usr/share/metainfo
+#usr/share/pixmaps
+#usr/share/recoll/images
+#usr/share/recoll/translations

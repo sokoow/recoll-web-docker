@@ -1,6 +1,17 @@
 README for Debian
 -----------------
 
+ 1.26.6 update, loss of GUI preferences:
+
+ A change in 1.26.6, which was supposedly intended for Windows, has
+ unfortunately resulted in a change of name for the GUI preferences file under
+ Linux. This was previously named ~/.config/Recoll.org/recoll.conf, and it is
+ now ~/.config/Recoll.org/recoll.ini. In order to recover your preferences, and
+ supposing that you have nothing useful in the new file, please exit recoll,
+ then rename ~/.config/Recoll.org/recoll.conf to ~/.config/Recoll.org/recoll.ini
+
+ -- Kartik Mistry <kartik@debian.org>  Sat, 04 Apr 2020 13:57:26 +0530
+
  Starting with 1.27.3-2, recoll is split into 3 packages. recoll is metapackage
  now and depends on GUI program, recollgui and commandline programs recollcmd.
 

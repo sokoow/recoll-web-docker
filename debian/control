@@ -1,26 +1,27 @@
 Source: recoll
 Section: x11
 Priority: optional
-Maintainer: Jean-Francois Dockes <jfd@recoll.org>
+Maintainer: Kartik Mistry <kartik@debian.org>
 Build-Depends: bison,
-               debhelper (>= 9),
+               debhelper-compat (= 13),
                dh-python,
-               dpkg-dev (>= 1.16.1~),
                libaspell-dev,
                libchm-dev,
-               libxapian-dev (>= 1.2.0),
+               libmagic-dev,
+               libxapian-dev,
                libxslt1-dev,
                libz-dev,
+               meson,
+               ninja-build,
                pkg-config,
-               python-all-dev (>= 2.6.6-3~),
-               python-setuptools,
+               python3-all,
                python3-all-dev,
-               python3-setuptools
-X-Python3-Version: >= 3.4
+               python3-setuptools,
 Vcs-Git: https://salsa.debian.org/debian/recoll.git
 Vcs-Browser: https://salsa.debian.org/debian/recoll
-Homepage: https://www.lesbonscomptes.com/recoll
-Standards-Version: 4.2.1
+Homepage: https://www.recoll.org
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
 
 Package: recoll
 Architecture: all
@@ -32,11 +33,11 @@ Description: Personal full text search package
  .
  Features:
   * Qt-based GUI.
-  * Supports the following document types (and their compressed versions)
-   - Natively: text, html, OpenOffice files,  excel, ppt, maildir and
-     mailbox (Mozilla and IceDove mail) with attachments, pidgin log files
+  * Supports the following document types (and their compressed versions).
+   - Natively: text, html, OpenOffice files, maildir and mailbox (Mozilla and
+     IceDove mail) with attachments, pidgin log files.
    - With external helpers:  pdf (pdftotext), postscript (ghostscript), msword
-     (antiword), rtf (unrtf). And others...
+     (antiword), excel, rtf (unrtf).
   * Powerful query facilities, with boolean searches, phrases, filter on file
     types and directory tree.
   * Support for multiple charsets, Internal processing and storage uses Unicode
@@ -45,54 +46,56 @@ Description: Personal full text search package
     indexing).
   * Easy installation. No database daemon, web server or exotic language
     necessary.
-  * The indexer can run either continuously or in batch.
+  * An indexer which runs either as a thread inside the GUI or as an external,
+    cron'able program.
+ .
+ This metapackage installs recoll GUI and commandline tools.
 
 Package: recollcmd
 Architecture: any
-Breaks: recoll (<< 1.23.7-2)
-Replaces: recoll (<< 1.23.7-2)
-Depends: python3, ${misc:Depends}, ${shlibs:Depends}
-Recommends: antiword,
-            aspell,
-            groff,
-            libimage-exiftool-perl,
-            poppler-utils,
-            python-recoll,
-            python3-lxml,
-            python3-recoll,
-            python3-six,
-            python3-mutagen,
-            python3-rarfile,
-            unrtf,
-            unzip,
-            xdg-utils
-Suggests: ghostscript,
+Breaks: recollgui (<< 1.28.5-1)
+Replaces: recollgui (<< 1.28.5-1)
+Depends: ${misc:Depends}, ${shlibs:Depends}, librecoll39 (= ${binary:Version})
+Recommends: aspell, python3, python3-recoll, xdg-utils, xsltproc
+Suggests: antiword,
+          djvulibre-bin,
+          ghostscript,
+          groff,
+          libimage-exiftool-perl,
           libinotifytools0,
+          libwpd-tools,
+          poppler-utils,
+          pstotext,
+          python3-chardet,
+          python3-chm,
+          python3-icalendar,
+          python3-lxml,
+          python3-mido,
+          python3-mutagen,
+          python3-py7zr,
+          python3-rarfile,
+          python3-six,
+          unrtf,
           untex,
           wv
 Description: Command line programs for recoll
- This package supports indexing and command line querying.
- 
-Package: python-recoll
+ This package contains command line programs for a personal full text search
+ package recoll.
+
+Package: recollgui
 Architecture: any
-Section: python
-Depends: python,
-         recollcmd (= ${binary:Version}),
-         ${misc:Depends},
-         ${python:Depends},
-         ${shlibs:Depends}
-Description: Python extension for recoll
- Personal full text search package which is based on a very strong backend
- (Xapian), for which it provides an easy to use and feature-rich interface.
- .
- This package provides Python extension module for recoll which can be use to
- extend recoll such as an Ubuntu Unity Lens.
+Breaks: recollcmd (<< 1.28.5-1)
+Replaces: recollcmd (<< 1.28.5-1)
+Depends: recollcmd (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: GUI program and elements for recoll
+ This package contains main recoll GUI for configuring, controlling and
+ querying recoll indexes.
 
 Package: python3-recoll
 Architecture: any
 Section: python
 Depends: python3,
-         recollcmd (= ${binary:Version}),
+         librecoll39 (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
@@ -102,3 +105,22 @@ Description: Python extension for recoll (Python3)
  .
  This package provides Python3 extension module for recoll which can be use to
  extend recoll such as an Ubuntu Unity Lens.
+
+Package: librecoll39
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Description: Base library for recoll and related extensions
+ This package contains the base code interfacing with Xapian and is used by the
+ recoll commands, the Python extensions, the KDE plugins.
+
+Package: librecoll39-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, librecoll39 (= ${binary:Version})
+Multi-Arch: same
+Description: Development files for librecoll
+ This package  contains the development files for librecoll package, which is
+ base code interfacing with Xapian and is used by the recoll commands, the
+ Python extensions, the KDE plugins.
