@@ -16,7 +16,7 @@ Should be as easy as invoking ```docker build -t recoll-web .``` . Then you shou
 
 ## Running locally
 
-Assuming you're cd'd into a directory full of text documents you want to search through, it should be as easy as doing: ```docker run -v $(pwd):/opt/documents recoll-web``` and then going to port 8080 of your docker container.
+Assuming you're cd'd into a directory full of text documents you want to search through, it should be as easy as doing: ```docker run -v $(pwd):/opt/documents -p 8080:8080 recoll-web``` and then going to port 8080 of your docker container.
 
 There's an initial full indexing pass done for the first time it runs, and after that recoll is set to monitor the docs folder you gave it every couple of moments for added documents.
 

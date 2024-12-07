@@ -10,48 +10,43 @@ include /usr/share/dpkg/buildflags.mk
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-build3vers := $(shell py3versions -sv)
-
-#build qt5 UI
-export QT_SELECT := qt5
+# Build qt5 UI
+export QMAKE=qmake6
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 	NJOBS := -j $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 endif
 
-# main packaging script based on dh7 syntax
 %:
-	dh $@ --parallel --with python2 --with python3
+	dh $@ --with python3
 
 override_dh_auto_configure:
-	dh_auto_configure -- --enable-recollq --enable-xadump --disable-x11mon --disable-qtgui
-
-build3vers := $(shell py3versions -sv)
+	dh_auto_configure --buildsystem=meson -- -Drecollq=true -Dxadump=true \
+	-Dwebkit=false -Dwebengine=true -Dsystemd=false \
+	-Dpython.platlibdir=/usr/lib/python3/dist-packages \
+    -Dx11mon=false -Dqtgui=false 
 
 override_dh_auto_install:
 	dh_auto_install
-	(cd python/recoll; libdir=/usr/lib/$${DEB_BUILD_MULTIARCH} python2 \
-					   ./setup.py install \
-	                                   --install-layout=deb \
-					   --prefix=/usr \
-	                                   --root=$(CURDIR)/debian/tmp/usr )
-	set -e && for i in $(build3vers); do \
-	(cd python/recoll; libdir=/usr/lib/$${DEB_BUILD_MULTIARCH} python$$i \
-					./setup.py install \
-	                                --install-layout=deb \
-					--prefix=/usr \
-	                                --root=$(CURDIR)/debian/tmp/ ) ; \
-	done
-	(cd python/pychm; python2 ./setup.py install \
-	                                   --install-layout=deb \
-					   --prefix=/usr \
-	                                   --root=$(CURDIR)/debian/tmp/ )
-	set -e && for i in $(build3vers); do \
-	(cd python/pychm; python$$i ./setup.py install \
-	                                --install-layout=deb \
-					--prefix=/usr \
-	                                --root=$(CURDIR)/debian/tmp/ ) ; \
-	done
+	# Cleanup
 	find $(CURDIR) -type f -name '*.la' -exec rm -f '{}' \;
 	find $(CURDIR) -type f -name '*.pyc' -exec rm -f '{}' \;
 	rm -rf $(CURDIR)/debian/tmp/usr/lib/python*/*/*/__pycache__
+	# Remove legacy format appdata.xml
+	rm -f $(CURDIR)/debian/tmp/usr/share/metainfo/recoll.appdata.xml
+	# Remove python2 filter
+	rm -f $(CURDIR)/debian/tmp/usr/share/recoll/filters/hotrecoll.py
+
+	# Older versions of meson don't take the platlibdir parameter above.
+	# Move the Python modules to the right place here.
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/python3/dist-packages
+	if test -d $(CURDIR)/debian/tmp/usr/lib/python*/site-packages ; then \
+		mv -f $(CURDIR)/debian/tmp/usr/lib/python*/site-packages/* \
+		$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages/;fi
+
+	# Fix permissions
+	chmod -x $(CURDIR)/debian/tmp/usr/share/recoll/filters/*.xsl
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf $(CURDIR)/qtqui/.qm

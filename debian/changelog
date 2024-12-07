@@ -1,560 +1,533 @@
-recoll (1.27.12-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.39.0-1) unstable; urgency=low
 
-  * Repair python source file indexing and spelling replacements
+  * New upstream release:
+    + Fix FTBFS (Closes: #1073334)
+  * debian/control, debian/rules:
+    + Added new binaries: librecoll and librecoll-dev
+    + Updated to the new meson build system from upstream.
+  * New upstream URL, updated relevant files.
+  * debian/copyright:
+    + Updated to match metadata license, no other changes.
+  * debian/recollcmd.lintian-overrides:
+    + Removed. Unused override.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 18 Nov 2020 16:15:00 +0100
+ -- Kartik Mistry <kartik@debian.org>  Tue, 25 Jun 2024 23:07:50 +0530
 
-recoll (1.27.11-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.36.1-1) unstable; urgency=low
 
-  * Missing files in tar dist broke the python modules.
+  * New upstream release.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 09 Nov 2020 12:20:00 +0100
+ -- Kartik Mistry <kartik@debian.org>  Wed, 08 Nov 2023 16:32:33 +0530
 
-recoll (1.27.10-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.35.0-1) unstable; urgency=low
 
-  * Fix real-time indexer not working when topdirs was /
-  * rclpython: renamed rclpython.py. Use rclexecm. Only colorize for
-    preview, not indexing.
-  * mimemap: add .xlsm
-  * Python module: merge pyrecoll and pyrclextract C extensions into one
-    _pyrecoll and create 2 python modules to maintain compat 
-  * Fix crash on ARM
-  * dark mode: improve visibility of checkable actions
-  * pdf annot: guard against possible exception while formatting results
-    Index pdf annotations separately under field name annotation. Add
-    annot, pdfannot and pa aliases. 
+  * New upstream release.
+  * debian/rules:
+    + Remove generated .qm files to fix 'Fails to build source after successful
+      build' (Closes: #1046946)
+  * Refreshed debian/patches/blhc.diff patch.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Wed, 04 Nov 2020 20:00:00 +0100
+ -- Kartik Mistry <kartik@debian.org>  Sun, 17 Sep 2023 17:09:49 +0530
 
-recoll (1.27.9-2~ppa1~bionic1) bionic; urgency=low
+recoll (1.34.7-1) unstable; urgency=low
 
-  * Fix bug in result table display.
+  * New upstream release.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Sun, 04 Oct 2020 20:00:00 +0200
+ -- Kartik Mistry <kartik@debian.org>  Tue, 20 Jun 2023 17:20:48 +0530
 
-recoll (1.27.8-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.34.3-1) unstable; urgency=medium
 
-  * A bug in utf8 truncation could lead to indexing failure by trying to
-    add an excessively long file name term.
+  * New upstream release:
+    + Fixed issue related to recollaspell.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 03 Oct 2020 15:23:00 +0200
+ -- Kartik Mistry <kartik@debian.org>  Wed, 15 Feb 2023 23:02:18 +0530
 
-recoll (1.27.7-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.34.2-1) unstable; urgency=low
 
-  * Improve result table display speed for big result sets.
-  * "underscoreasletter" configuration parameter.
-  * Menu entry to switch to dark display from .
+  * New upstream release.
+  * debian/control:
+    + Updated Standards-Version to 4.6.2
+    + Added Build-Dep: qttools5-dev
+  * debian/not-installed:
+    + Ignore unrelated not-to-be-installed files.
+  * Updated debian/copyright.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 02 Oct 2020 14:25:00 +0200
+ -- Kartik Mistry <kartik@debian.org>  Sun, 05 Feb 2023 11:14:10 +0530
 
-recoll (1.27.6-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.33.2-1) unstable; urgency=low
 
-  * Process PDF annotations if the poppler-glib Python bindings are available
-  * Fix build error with some compiler versions
-  * Fix inconsistent lock file name issue which could result in background
-    indexer exit.
-  * recollq: new -p option to show snippets lists instead of abstracts with
-    -A
-  * Fix nonumbers option.
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster (oldstable):
+    + Build-Depends: Drop versioned constraint on dpkg-dev and libxapian-dev.
 
- -- Jean-Francois Dockes <jf@dockes.org>  Sun, 13 Sep 2020 13:29:00 +0200
+  [ Kartik Mistry ]
+  * New upstream release.
 
-recoll (1.27.5-1~ppa1~bionic1) bionic; urgency=low
+ -- Kartik Mistry <kartik@debian.org>  Tue, 15 Nov 2022 18:16:05 +0530
 
-  * Misc small fixes.
-  * Fix recollindex -r not working with relative paths.
-  * Fix PDF attachment processing.
-  * Fix duplicate detection in some cases.
-  * Process text/plain subdocuments (e.g. zip archive members) in the same
-    way as top level files (esp: perform paging for big texts).
-  * Msword .docx: avoid extracting some non-text data
-  * Index Visio documents (.vsdx format only).
-  * Epub: index the metadata "subjects" fields.
-  * GUI: separate popup menu entries for "open parent" and "open folder".
-  * GUI: doc icons were not shown with newer webengine versions.
-  * GUI file name search: sort directories first.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 17 Aug 2020 18:18:00 +0200
+recoll (1.32.7-1) unstable; urgency=medium
 
-recoll (1.27.3-1~ppa1~bionic1) bionic; urgency=low
+  * New upstream release.
+  * debian/rules:
+    + Build package without systemd, patch by Graham Inggs <<ginggs@debian.org>
+      (Closes: #1019127)
 
-  * Misc small fixes. Nothing major, see the git log for details
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 27 Jun 2020 14:29:00 +0200
+ -- Kartik Mistry <kartik@debian.org>  Thu, 15 Sep 2022 14:02:55 +0530
 
-recoll (1.27.2-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.32.5-1) unstable; urgency=low
 
-  * Korean: index the whole words along the split ones.
-  * Saved simple searches: also save/restore the active external indexes.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 25 May 2020 09:29:00 +0200
+  * New upstream release.
+  * debian/control:
+    + Updated Standards-Version to 4.6.1
 
-recoll (1.27.1-1~ppa1~bionic1) bionic; urgency=low
+ -- Kartik Mistry <kartik@debian.org>  Tue, 12 Jul 2022 09:44:20 +0530
 
-  * Korean: index all mecab tags until we know more.
+recoll (1.32.2-1) unstable; urgency=low
 
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 11 May 2020 08:38:00 +0200
+  * New upstream release.
 
-recoll (1.27.0-1~ppa1~bionic1) bionic; urgency=low
+ -- Kartik Mistry <kartik@debian.org>  Tue, 14 Jun 2022 11:45:50 +0530
 
-  * Support for language-sensitive analysis of Korean text
-  * Index docx endnotes and footnotes
-  * Other small improvements.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 06 May 2020 15:32:00 +0200
+recoll (1.32.0-1) unstable; urgency=low
 
-recoll (1.26.6-1~ppa1~bionic1) bionic; urgency=low
+  * New upstream release.
 
-  * Minor fixes. Checkpoint before korean splitter merge.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 26 Mar 2020 11:08:00 +0100
+ -- Kartik Mistry <kartik@debian.org>  Sat, 02 Apr 2022 20:04:39 +0530
 
-recoll (1.26.5-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.31.6-1) unstable; urgency=low
 
-  * Version bump for the new OCR scripts
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 27 Feb 2020 18:18:00 +0100
+  * New upstream release.
 
-recoll (1.26.4-1~ppa1~bionic1) bionic; urgency=low
+ -- Kartik Mistry <kartik@debian.org>  Thu, 30 Dec 2021 19:11:41 +0530
 
-  * Fixes potential infinite loop in decompression. Other small bug fixes.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 23 Jan 2020 08:00:00 +0100
+recoll (1.31.4-1) unstable; urgency=low
 
-recoll (1.26.3-1~ppa1~bionic1) bionic; urgency=low
+  * New upstream release.
 
-  * Small bug fixes and extensions
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 29 Nov 2019 10:28:00 +0200
+ -- Kartik Mistry <kartik@debian.org>  Mon, 29 Nov 2021 09:00:26 +0530
 
-recoll (1.26.1-1~ppa1~bionic1) bionic; urgency=low
+recoll (1.31.2-1) unstable; urgency=low
 
-  * Fix the default history size, 1.26.0 disabled the search history by default
-  * Fix memorizing the temp file warning when changed from dialog.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 25 Oct 2019 16:48:00 +0200
+  * New upstream release.
+  * debian/control:
+    + Updated Standards-Version to 4.6.0
+  * Refreshed debian/patches/blhc.diff
+  * Updated debian/copyright.
 
-recoll (1.26.0-1~ppa1~bionic1) bionic; urgency=low
+ -- Kartik Mistry <kartik@debian.org>  Sat, 20 Nov 2021 19:01:25 +0530
 
-  * Windows: aspell support.
-  * Windows: pst file indexing.
-  * Windows: use the Windows task scheduler to schedule batch indexing.
-  * GUI: add Previous/Next buttons to the preview Window.
-  * GUI: improved search completer.
-  * GUI: add preference to turn off desktop notifications.
-  * GUI: add popup menu to snippets window to toggle page/relevance
-    ordering.
-  * GUI: add preference to limit search history length or disable it.
-  * GUI: improved query language help tooltip.
-  * Reworked the group matching code used for highlighting and snippets.
-  * Allow displaying snippets for successive documents in the snippet
-    window, link to result table hovering.
-  * Properly highlight phrases, not treating them as NEAR.
-  * Fix the CJK phrase processing, the slack was wrong, resulting in bogus
-    matches     
-  * Ignore all ASCII whitespace when generating CJK ngrams.
-  * Process all Korean Hangul as alphabetic, not CJK (split as space
-    separated terms).
-  * GUI: improvements in preview up to date checks.
-  * Added 'onlyNames' configuration variable for filtering file names.
-  * Avoid purging existing data when reindexing a file fails, for example,
-    on Windows, because the file is locked.
-    
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 14 Oct 2019 08:30:00 +0200
-
-recoll (1.25.23-1~ppa1~bionic1) bionic; urgency=low
-
-  * Small fixes: fix problem with some mbox formats, clickable urls in
-    about dialog, Fix F1 not starting help anymore. Windows: avoid purging
-    the index if a share is disconnected while we work. Windows: avoid
-    picking up the wrong pdftotext.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 07 Oct 2019 11:08:00 +0200
-
-recoll (1.25.22-1~ppa1~bionic1) bionic; urgency=low
-
-  * Small fixes: mbox offsets wrong in some cases, rcltex charset
-    detection, doctype action editor fixes, use xdg-open %U, fix restable
-    colwidths prefs size explosion.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 27 Aug 2019 14:57:00 +0200
-
-recoll (1.25.21-1~ppa1~bionic1) bionic; urgency=low
-
-  * Windows: fix mbox cache offset which was not working at all
-  * GUI: fix restable highlighting, again.
-  * GUI: special indexing: no indexing was performed when erase was set,
-    only erase.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 08 Aug 2019 14:16:00 +0200
-
-recoll (1.25.20-1~ppa1~bionic1) bionic; urgency=low
-
-  * GUI: preview: improve operation when the original file has changed or
-    can't be read: use stored data.
-  * GUI: result table contents were not reset when the search was cleared.
-  * Windows: fix paths accented character processing in configuration GUI.
-  * Windows: fix temporary file deletion. Many were not deleted because
-    they were still opened by the handler when we tried to remove
-    them. Fixed a number of handlers to properly close the file, and add a
-    cleanup pass after the handler cache is cleaned at the end of indexing.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 22 Jul 2019 15:52:00 +0200
-
-recoll (1.25.19-1~ppa1~bionic1) bionic; urgency=low
-
-  * Fix issues in pdf handler
-
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 13 Jun 2019 08:41:00 +0200
-
-recoll (1.25.18-1~ppa1~bionic1) bionic; urgency=low
-
-  * GUI: fixed webengine result list for newer qt versions (5.12 ok)
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 27 May 2019 17:07:00 +0200
-
-recoll (1.25.17-1~ppa1~bionic1) bionic; urgency=low
-
-  * Fixed bug in snippets generation, possibly discarding the best snippets.
-  * Small improvements in synonyms handling, significant for big synonym
-    files. 
-  * Raw indexes: fix test for capitals in user input in a few marginal
-    cases.
-  * ppt-dump: catch exceptions to avoid system reports.
-  * djvu: fix output from non-ASCII files  
-  * GUI: fix highlighting in table mode
-  * GUI: add "Open" button to preview window
-  * GUI: fix crash when reusing a result list after changing preferences
-    (and in other cases too  maybe).
-  * Python: fix memory leak in Python module.
-  * Python: properly manage querying multiple separate indexes.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 24 May 2019 08:58:00 +0200
-
-recoll (1.25.12-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.12
-  * Fixes GUI crash
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Wed, 11 Apr 2019 15:52:00 +0200
-
-recoll (1.25.11-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.11
-  * Performance improvement in ole-dumper
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 28 Mar 2019 06:14:00 +0100
-
-recoll (1.25.10-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.10
-  * Python handlers performance and behaviour improvements
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 26 Mar 2019 09:26:00 +0100
-
-recoll (1.25.9-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.9
-  * Fixes crash in python module.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 22 Mar 2019 10:07:00 +0100
-
-recoll (1.25.8-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.8
-  * Minor updates
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 21 Mar 2019 14:14:00 +0100
-
-recoll (1.25.4-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.4
-  * Fixes a few minor-to-ennoying bugs
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 19 Feb 2019 08:42:00 +0100
-
-recoll (1.25.3-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.25.3
-  * New GUI term completion tool, fetching from search history and index
-    terms.
-  * All Python scripts converted to Python3 and using it by default.
-  * XML formats formerly using xsltproc now handled internally through
-    libxml2 and libxslt.
-  * Better support for mountable volumes: empty elements of topdirs are
-    ignored (the corresponding index data is not purged).
-  * GUI: remember and manage maximized state.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 15 Feb 2019 08:42:00 +0100
-
-recoll (1.24.1-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.24.1.
-  * New snippets generation method, using document text stored in the index
-    (default only for new indexes and Xapian 1.4, can be forced by setting
-    iindexStoreDocText and deleting the old index). 
-  * New range queries : fieldname:min..max, usable only if the field has
-    been appropriately configured. 
-  * Improved support for removable volumes.
-  * It is now  possible to use a readonly index directory for searches.
-  * CHM and EPUB indexing: add chmcatenate and epubcatenate to specify that
-    the contents should be indexed as a whole instead of broken up in
-    chapters (resulting in a single search result for the document). 
-  * Added -L option to recoll for forcing message language, overriding NLS
-    environment. 
-  * Fixed clicks on orthographic suggestions which did not work any more
-    with qt5. 
-  * All input handlers should now be compatible with Python3, but still use
-    Python2. 
-  * New idxtexttruncatelen configuration variable to only index the
-    beginning of documents. 
-  * Fixes "error 9 on netlink descriptor" GUI crash
-    
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 14 May 2018 08:55:00 +0100
-
-recoll (1.23.8-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New release 1.23.8. Fixes "error 9 on netlink descriptor" GUI crash
-    
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 12 Apr 2018 14:13:00 +0100
-
-recoll (1.23.7-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix ennoying bug in dir filtering with upper-case names
-    
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 08 Jan 2018 22:18:00 +0100
-
-recoll (1.23.6-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Make sure new indexes are created in Chert format, even with Xapian 1.4
-    This works around the Glass snippets generation issue (UI freezes).
-    
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 08 Dec 2017 15:18:00 +0100
-
-recoll (1.23.5-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Support the new browser plugin based on WebExtensions.
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 24 Nov 2017 17:06:00 +0100
-
-recoll (1.23.4-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Restore search mode when loading saved simple search.
-  * Add option -P to recollindex to force purge with -i.
-  * Split package into non-gui/gui subpackages.
-  * Add -L option to GUI for forcing messages language.
-  * Removed 'bin' from default skippedNames.
-  * Improve robustness of email header parser against encoding errors.
-  * email: fix additional header indexing.
-  * Restable: fix popup menu (show dups would open parent folder).
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 16 Nov 2017 09:33:00 +0100
-
-recoll (1.23.3-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Added function to list files which we failed to index (accessible from
-    the GUI term explorer).
-  * Always process text/html when resulting from a conversion even if the
-    type is excluded by indexedmimetypes or excludedmimetypes.
-  * Small fixes to pdf XMP metadata handling.
-  * Small fixes for supporting Dragonfly BSD.
-  * GUI qss file: force text color to black to avoid white on white text
-    problem with some KDE themes.
-  * Fixed issue on Windows which prevented adding a drive root (e.g. d:/)
-    to topdirs.
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 10 Nov 2017 09:24:00 +0100
-
-recoll (1.23.2-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix issue with advanced search clause list growth explosion
-  * Fix crash in text splitter
-  * Updated pdf handler with XML metadata capability
-  * Small improvement for Japanese handling
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 15 May 2017 12:39:00 +0100
-
-recoll (1.23.1-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Small fixes to kio build
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 28 Mar 2017 08:48:00 +0100
-
-recoll (1.23.0-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Misc changes, mostly internal
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 27 Feb 2017 18:53:00 +0100
-
-recoll (1.22.4-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix advanced search 'start search' not doing anything with qt5
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 25 Nov 2016 11:38:00 +0100
-
-recoll (1.22.3-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 21 Jun 2016 15:11:00 +0200
-
-recoll (1.22.2-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Packaging fixes.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 16 Jun 2016 09:11:00 +0200
-
-recoll (1.22.1-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fixed two GUI crashes
-  * Small other fixes
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 14 Jun 2016 17:31:00 +0200
-
-recoll (1.22.0-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New build based on autotools
-  * Synonyms
-  * Windows port
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 05 Apr 2016 16:01:00 +0200
-
-recoll (1.21.5-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix query language parser for multiple mime or rclcat entries
-
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 29 Jan 2016 14:48:00 +0200
-
-recoll (1.21.4-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Show confirmation dialog when opening temp files + small bug fixes
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 12 Jan 2016 16:19:00 +0200
-
-recoll (1.21.3-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix webcache size being capped at 1 GB
-
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 31 Oct 2015 09:26:00 +0200
-
-recoll (1.21.2-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New special indexing dialog in GUI
-  * Fix advanced search dialog "Any Clause" mode
-  * Fixed a few bounds issues catched by Windows VC++
-  * Miscellaneous other minor fixes
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 01 Oct 2015 09:40:00 +0200
-
-recoll (1.21.0-1~ppa1~bionic1) bionic; urgency=low
-                
-  * New bison-based query parser.
-  * Improves filter execution performance
-  * Save/reload queries
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 16 Jun 2015 18:10:00 +0200
-
-recoll (1.20.6-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Fix some decompression issues with serious performance and
-    system load consequences in some cases (depending on data): minimum
-    checking that enough temp space is available before uncompressing, no
-    need to uncompress tar.gz files, set a default of 20 MBs for
-    maxcompressedfilekbs.
-  * rclscribus fixes.
-  * GUI messages: Danish translation and fix 2 dialogs which were not
-    translated improvements.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 25 Apr 2015 14:36:00 +0200
-
-recoll (1.20.4-1~ppa1~bionic1) bionic; urgency=low
-                
-  * Should have been in 1.20.3: skip compressed fs image files like xxx.img.gz
-    by default (mimemap:recoll_noindex).
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 30 Mar 2015 10:06:00 +0200
-
-recoll (1.20.3-1~ppa1~bionic1) bionic; urgency=low
-                
-  * fixes a bug where the real time indexer did not process the web queue
-  * miscellaneous usability improvements in the GUI.
-  * Copy sample fragbuts.xml file if it does not exist
-
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 28 Mar 2015 09:40:00 +0200
-
-recoll (1.20.1-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.20.1 brings improved indexing of compound words like email addresses
-    and miscellaneous usability improvements in the GUI.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 19 Dec 2014 08:14:00 +0200
-
-recoll (1.19.14p2-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.19.14p2 fixes Bengali diacritics processing, a memory leak in the
-    Python module, and a few minor issues in the filters.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 11 Sep 2014 07:47:00 +0200
-
-recoll (1.19.14p1-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.19.14p1 fixes a descriptor and memory leak in the Python module. The
-    main programs and library are unchanged.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 26 Jun 2014 13:14:00 +0200
-
-recoll (1.19.14-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.19.14 fixes two relatively minor but ennoying issues in indexing:
-
-   - The use of a separate readonly Database object for querying the index
-     while indexing would trigger Xapian errors, (bad block reads), and
-     subsequent up-to-date check failures (leading to unnecessary
-     reindexing). The jury is out as to the cause, but using the same
-     object for reading and writing seems to eliminate the problem.
-
-   - A spurious log message in the child process between forking and
-     executing the filter could block on a mutex, and lead to a 20 mn
-     timeout for the affected father process thread (happened only in
-     multithread mode).
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 07 Jun 2014 18:56:00 +0200
-
-recoll (1.19.13-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.19.13 hopefully fixes the multithreaded indexing crashes and silences
-    the noisy ppt extractor failures.
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Thu, 06 May 2014 14:22:00 +0200
-
-recoll (1.19.12p2-1~ppa1~bionic1) bionic; urgency=low
-                
-  * 1.19.12 p1 + restable doubleclick
-  
- -- Jean-Francois Dockes <jf@dockes.org>  Sun, 07 Apr 2014 16:17:00 +0200
-
-recoll (1.19.12p1-1~ppa1~bionic1) bionic; urgency=low
-
-  * 1.19.12 install forgot the xls filter 
-
- -- Jean-Francois Dockes <jf@dockes.org>  Sun, 06 Apr 2014 06:57:00 +0200
-
-recoll (1.19.12-1~ppa1~bionic1) bionic; urgency=low
-
-  * Minor fixes to 1.19.11. Make metadata stored length a parameter. 
-  * New xls dumper based on mso-dumper removes catdoc dependancy
-  * Move out the code for the Ubuntu Unity lens and scope
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 02 Apr 2014 15:12:00 +0200
-
-recoll (1.19.11p1-1~ppa1~bionic1) bionic; urgency=low
-
-  * minor fixes to 1.19.10
-
- -- Jean-Francois Dockes <jf@dockes.org>  Mon, 27 Nov 2013 09:54:00 +0200
-
-recoll (1.19.10-1~ppa1~bionic1) bionic; urgency=low
-
-  * Support for saucy in 1.19. Separate python and python3 packages
-
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 23 Nov 2013 16:01:46 +0100
+recoll (1.31.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Upload to unstable.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 20 Aug 2021 18:57:41 +0530
+
+recoll (1.30.1-1) experimental; urgency=low
+
+  * New upstream release (Closes: #985075)
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 13 Apr 2021 11:25:13 +0530
+
+recoll (1.28.5-2) unstable; urgency=high
+
+  * Added missing Breaks+Replaces version for recollcmd and recollgui
+    (Closes: #984463)
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 26 Mar 2021 17:56:52 +0530
+
+recoll (1.28.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Suggest python3-py7zr instead of python3-lz4 (Closes: #950782)
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 18 Jan 2021 10:10:00 +0530
+
+recoll (1.28.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Suggest python3-lz4 (Closes: #950782)
+  * debian/recollgui.links:
+    + Fix link to user manual (Closes: #979360)
+
+ -- Kartik Mistry <kartik@debian.org>  Wed, 06 Jan 2021 13:05:56 +0530
+
+recoll (1.27.12-1) unstable; urgency=low
+
+  * New upstream release (Closes: #975036)
+  * debian/control:
+    + Updated Standards-Version to 4.5.1
+  * Updated debian/watch (Closes: #975037)
+  * debian/rules:
+    + B-D on python3-all-dev but only builds for current python. Thanks
+      Steve Langasek <steve.langasek@canonical.com> for patch
+      (Closes: #972196, #973330)
+  * debian/copyright:
+    + Fixed duplicate-globbing-patterns error.
+    + Fixed file path.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 18 Dec 2020 22:26:11 +0530
+
+recoll (1.27.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Added 'Rules-Requires-Root' field.
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 30 Jun 2020 17:55:09 +0530
+
+recoll (1.27.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: #961721)
+  * debian/control:
+    + Bumped dh to 13.
+  * debian/rules:
+    + We are on Python3 only, so don't use pyversions.
+  * Do not install recoll.appdata.xml yet.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 28 May 2020 18:08:45 +0530
+
+recoll (1.26.7-1) unstable; urgency=medium
+
+  * New upstream release:
+    + Fixes loss of GUI preferences due to filename change in 1.26.6 release.
+      This was previously named ~/.config/Recoll.org/recoll.conf, and it is
+      now ~/.config/Recoll.org/recoll.ini. In order to recover your
+      preferences, and supposing that you have nothing useful in the new file,
+      please exit recoll, then rename ~/.config/Recoll.org/recoll.conf to
+      ~/.config/Recoll.org/recoll.ini
+  * Updated debian/README.Debian with notes from upstream. Thank you,
+    Jean-Francois Dockes.
+  * Added 'python3-all' as Build-Depends.
+
+ -- Kartik Mistry <kartik@debian.org>  Sat, 04 Apr 2020 17:59:41 +0530
+
+recoll (1.26.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refreshed debian/patches/blhc.diff.
+
+ -- Kartik Mistry <kartik@debian.org>  Sat, 28 Mar 2020 20:04:40 +0530
+
+recoll (1.26.5-1) unstable; urgency=low
+
+  * New upstream release (Closes: #949673)
+    + Fix FTBFS with libxslt 1.1.34 (Closes: #948870)
+  * debian/control:
+    + Switch to debhelper-compat.
+    + Updated Standards-Version to 4.5.0
+  * Added debian/upstream/metadata file.
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 16 Mar 2020 11:59:17 +0530
+
+recoll (1.26.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Bumped libxapian-dev version dependency.
+
+ -- Kartik Mistry <kartik@debian.org>  Sun, 01 Dec 2019 19:01:12 +0530
+
+recoll (1.26.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 07 Nov 2019 18:22:36 +0530
+
+recoll (1.26.0-2) unstable; urgency=low
+
+  * debian/patches/blhc.diff:
+    + Added patch to fix blhc missing CPP/CXXFLAGS.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 18 Oct 2019 20:20:21 +0530
+
+recoll (1.26.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added debian/gitlab-ci.yml.
+  * Bumped dh to 12.
+  * debian/patches/wrong-interpreter.diff, debian/patches/path_max.diff:
+    + Dropped. Applied upstream.
+  * debian/control:
+    + Added missing Build-Depends.
+    + Updated Standards-Version to 4.4.1
+    + Removed python-recoll package (Closes: #938341)
+    + Suggests more helpers (Closes: #942072)
+  * debian/rules:
+    + Moved to dh based rules.
+    + Removed python2 bits.
+    + Updated for dh 12.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 17 Oct 2019 10:45:38 +0530
+
+recoll (1.24.3-4) unstable; urgency=low
+
+  * debian/patches/path_max.diff:
+    + Added patch to fix build on hurd-i386 from upstream.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 14 Dec 2018 20:59:39 +0530
+
+recoll (1.24.3-3) unstable; urgency=low
+
+  * debian/rules:
+    + Added patch to enable parallel building. Thanks Pino Toscano.
+      (Closes: #914782)
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 27 Nov 2018 14:09:56 +0530
+
+recoll (1.24.3-2) unstable; urgency=low
+
+  * debian/control:
+    + Added missing python dependencies.
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 26 Nov 2018 19:10:40 +0530
+
+recoll (1.24.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/recoll-qabstractviewitem.diff:
+    + Dropped. Merged upstream.
+  * Fixed upstream signing key.
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 20 Nov 2018 18:18:54 +0530
+
+recoll (1.24.1-4) unstable; urgency=low
+
+  * debian/control:
+    + recollcmd: Move python* from Depends to Recommends (Closes: #912449)
+    + Fixed typo: python-libxm2 -> python-libxml2.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 01 Nov 2018 11:25:01 +0530
+
+recoll (1.24.1-3) unstable; urgency=medium
+
+  * debian/patches:
+    + Added patch to fix FTBFS (Closes: #906764)
+    + Added patch to fix wrong interpreter path.
+  * debian/control:
+    + Updated Standards-Version to 4.2.1
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 27 Aug 2018 21:35:38 +0530
+
+recoll (1.24.1-2) unstable; urgency=medium
+
+  * debian/rules:
+    + Fix FTBFS when built with dpkg-buildpackage -A (Closes: #900311)
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 28 Jun 2018 17:26:02 +0530
+
+recoll (1.24.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Removed X-Python-Version field.
+
+ -- Kartik Mistry <kartik@debian.org>  Wed, 16 May 2018 17:04:15 +0530
+
+recoll (1.24.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated upstream signing key.
+  * debian/control:
+    + Updated Standards-Version to 4.1.4
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 03 May 2018 18:10:30 +0530
+
+recoll (1.23.7-4) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control:
+    + Use https in URL.
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 03 Apr 2018 10:45:36 +0530
+
+recoll (1.23.7-3) experimental; urgency=low
+
+  * debian/control:
+    + Fixed version in Breaks and Replaces (Closes: #888302)
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 26 Jan 2018 21:14:45 -0800
+
+recoll (1.23.7-2) experimental; urgency=low
+
+  * debian/control, debian/*.install:
+    + Splited package to separate GUI and commandline programs:
+      recollgui and recollcmd (Closes: #602229)
+    + Updated descriptions.
+  * debian/README.Debian:
+    + Updated for package split.
+  * debian/rules:
+    + Enabled recollq (Closes: #841067)
+  * Updated lintian override.
+  * debian/copyright:
+    + http->https in some URLs.
+  * debian/watch:
+    + Add upstream pgp key option.
+
+ -- Kartik Mistry <kartik@debian.org>  Tue, 23 Jan 2018 00:17:10 +0530
+
+recoll (1.23.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Changed Vcs-* to salsa.debian.org
+    + Updated Standards-Version to 4.1.3
+    + Removed autotools-dev from Build-Deps.
+    + Removed catdoc from Suggests. Not needed for recoll > 1.1.19.
+    + Added python3 as a dependency.
+    + Add packages to Suggests (Closes: #831812, #869809)
+  * Bumped dh compat to 11.
+  * Use https URL in debian/watch URL.
+  * recoll.lintian-overrides:
+    + Removed unused lintian overrides.
+    + Added override: package-has-unnecessary-activation-of-ldconfig-trigger.
+  * debian/rules:
+    + Don't set CFLAGS and others.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 12 Jan 2018 22:04:24 +0530
+
+recoll (1.23.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Updated Standards-Version to 4.1.1
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 13 Oct 2017 13:41:54 +0530
+
+recoll (1.23.2-1) unstable; urgency=low
+
+  * New upstream release:
+    + Index new Libreoffice file formats (Closes: #856605)
+  * Removed unused lintian override.
+
+ -- Kartik Mistry <kartik@debian.org>  Wed, 17 May 2017 21:13:39 +0530
+
+recoll (1.22.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kartik Mistry <kartik@debian.org>  Fri, 09 Dec 2016 18:48:48 +0530
+
+recoll (1.22.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Updated Standards-Version to 3.9.8
+    + Updated Vcs-* URLs.
+    + Depends on python.
+  * debian/copyright:
+    + Removed and updated sections for new upstream release.
+  * debian/rules:
+    + Removed .la files.
+    + Removed empty dbg packages.
+    + Fix executable scripts.
+  * Override 'python-script-but-no-python-dep' Lintian as they are not used
+    directly.
+  * Removed debian/patches/fix-python-install.patch, merged upstream.
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 04 Jul 2016 12:38:41 +0530
+
+recoll (1.21.5-1) unstable; urgency=medium
+
+  * Acknowledge NMUs. Thanks!
+  * New upstream release.
+  * debian/control:
+    + Vcs-* URL to use https:// instead of git://
+  * Set debian/compat to 9.
+  * Removed debian/recoll.menu file.
+
+ -- Kartik Mistry <kartik@debian.org>  Sat, 30 Jan 2016 19:41:54 +0530
+
+recoll (1.21.0-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload with the maintainer's approval.
+  * Switch to Qt 5 (Closes: #784523).
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 27 Jan 2016 11:35:47 -0300
+
+recoll (1.21.0-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload (agreed by maintainer). (Closes: #809478)
+  * Add support for building for all supported python3 versions (this is a
+    better solution than the one proposed in #793636
+    - Change python3-dev build-dep back to python3-all-dev
+    - Add loop over supported python3 versions to install rule
+
+ -- Scott Kitterman <scott@kitterman.com>  Tue, 12 Jan 2016 20:39:01 -0500
+
+recoll (1.21.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Build-depend on python3-dev, python-dev, not python3-all-dev and
+      python-all-dev. Thanks to Steve Langasek for patch. (Closes: #793636)
+    + Added Build-depends on bison.
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 03 Aug 2015 14:16:32 +0530
+
+recoll (1.20.3-2) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- Kartik Mistry <kartik@debian.org>  Wed, 06 May 2015 10:11:52 +0530
+
+recoll (1.20.3-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Removed dependency on hardening-wrapper; Using dpkg-buildflags
+    + Updated Standards-Version to 3.9.6
+    + Added dh-python in Build-Depends.
+  * debian/rules:
+    + Fixed flags.
+    + Use dpkg-buildflags.
+  * debian/patches:
+    + Removed fix-filter-shebang.patch; Merged upstream.
+  * debian/copyright:
+    + Removed unused licenses and fixed DEP5 formatting.
+  * Added recoll.lintian-overrides for useless postinst/postrm ldconfig calls.
+
+ -- Kartik Mistry <kartik@debian.org>  Sun, 29 Mar 2015 23:17:31 +0530
+
+recoll (1.19.13-1) experimental; urgency=low
+
+  * New upstream release.
+  * Uploaded to unstable.
+  * debian/control:
+    + Added new package python3-recoll for Python3.
+    + Updated Standards-Version to 3.9.5
+    + python*-recoll depends on recoll (= ${binary:Version})
+  * debian/rules:
+    + dh_python2/dh_python3 target for separated package.
+    + Fixed installation of some filters.
+  * Updated debian/watch file.
+  * Updated python-recoll.install file.
+  * Updated debian/copyright.
+  * Added patch to fix shebang for some filters.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 08 May 2014 15:01:30 +0530
+
+recoll (1.19.7-1) experimental; urgency=low
+
+  * New upstream release.
+  * Updated debian/watch file.
+
+ -- Kartik Mistry <kartik@debian.org>  Sun, 06 Oct 2013 21:22:26 +0530
+
+recoll (1.19.5-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/patches:
+    + Removed: fix-manpage-typos.patch. Merged upstream.
+    + Refreshed: fix-python-install.patch.
+  * debian/control:
+    + Updated Standards-Version to 3.9.4
+  * debian/*.install, debian/rules:
+    + Updated for upstream changes.
+
+ -- Kartik Mistry <kartik@debian.org>  Sun, 29 Sep 2013 20:13:59 +0530
 
 recoll (1.18.1-1) experimental; urgency=low
 

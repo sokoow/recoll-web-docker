@@ -1,44 +1,83 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: recoll
-Upstream-Contact: Jean-Francois Dockes <jfd@recoll.org>
+Upstream-Contact: Jean-Francois Dockes <jf@dockes.org>
 Source: https://www.lesbonscomptes.com/recoll/
 
 Files: *
-Copyright: 2005-2014, Jean-Francois Dockes <jfd@recoll.org>
-License: GPL-2+
+Copyright: 2005-2024, Jean-Francois Dockes <ijf@dockes.org>
+License: GPL-2.0+
 
 Files: bincimapmime/*
 Copyright: 2002-2005, Andreas Aardal Hanssen <andreas-binc@bincimap.org>
-License: GPL-2+
+License: GPL-2.0+
 
-Files: filters/rcl* internfile/htmlparse.cpp
-Copyright: 2000-2004, Mikio Hirabayashi
-License: GPL-2+
+Files: filters/rclaptosidman
+Copyright: 2004, J.F.Dockes
+           2003-2004, Mikio Hirabayashi
+License: GPL-2.0+
 
-Files: filters/rclpython
-Copyright: J\xfcrgen Hermann, Mike Brown, Christopher Arndt
+Files: filters/rclbasehandler.py filters/rcldjvu.py
+Copyright: 2016, J.F.Dockes
+License: GPL-2.0+
+
+Files: filters/rclimg
+Copyright: 2007, Cedric Scott
+License: GPL-2.0+
+
+Files: filters/rclpython.py
+Copyright: Jürgen Hermann, Mike Brown, Christopher Arndt
  <http://chrisarndt.de/en/software/python/colorize.html>
-License: GPL-2+
+License: GPL-2.0+
+
+Files: filters/rclocr.py filters/rclocrabbyy.py filters/rclocrcache.py filters/rclocrtesseract.py filters/rclopxml.py
+Copyright: 2020, J.F.Dockes
+License: GPL-2.0+
 
 Files: internfile/htmlparse.cpp internfile/mh_html.cpp
 Copyright: 1999-2001, BrightStation PLC,
            2001, Ananova Ltd,
            2002-2004, Olly Betts.
-License: GPL-2+
+License: GPL-2.0+
+
+Files: rcldb/daterange.cpp
+Copyright: 2002-2003, 2006 Olly Betts
+           2002, Intercede 1749 Ltd
+           2001-2002, Ananova Ltd
+           2001, James Aylett
+           1999-2001, BrightStation PLC
+License: GPL-2.0+
 
 Files: unac/*
 Copyright: 2000-2002, Loic Dachary <loic@senga.org>
-License: GPL-2+
+License: GPL-2.0+
 
 Files: common/*
 Copyright: 2004-2005, J.F.Dockes
-License: GPL-2+
+License: GPL-2.0+
+
+Files: aspell/*
+Copyright: 2006-2021, J.F.Dockes
+License: GPL-2.0+
+
+Files: python/pychm/recollchm/chm.py
+Copyright: 2003-2006, Rubens Ramos <rubensr@users.sourceforge.net>,
+           2003, Razvan Cojocaru <razvanco@gmx.net>
+License: GPL-2.0+
+
+Files: python/pychm/recollchm/swig_chm.i
+Copyright: 2003, Rubens Ramos <rubensr@users.sourceforge.net>,
+           2003, Razvan Cojocaru <razvanco@gmx.net>
+License: GPL-2.0+
+
+Files: python/recoll/recoll/conftree.py
+Copyright: 2016-2022, J.F.Dockes
+License: GPL-2.0+
 
 Files: debian/*
-Copyright: 2007-2014, Kartik Mistry <kartik@debian.org>
-License: GPL-2+
+Copyright: 2007-2024, Kartik Mistry <kartik@debian.org>
+License: GPL-2.0+
 
-License: GPL-2+
+License: GPL-2.0+
  This package is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
  Foundation; either version 2 of the License, or (at your option) any later
@@ -55,29 +94,6 @@ License: GPL-2+
  On Debian systems, the complete text of the GNU General Public License can be
  found in `/usr/share/common-licenses/GPL-2' and
  `/usr/share/common-licenses/GPL-3'.
-
-Files: aspell/*
-Copyright: 2001-2002, by Kevin Atkinson
-License: LGPL-2+
-
-License: LGPL-2+
- This package is free software; you can redistribute it and/or modify it under
- the terms of the GNU Lesser General Public License as published by the Free
- Software Foundation; either version 2 of the License, or (at your option) any
- later version.
- .
- This package is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- details.
- .
- You should have received a copy of the GNU Lesser General Public License along
- with this package; if not, write to the Free Software Foundation, Inc., 51
- Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
- .
- On Debian systems, the complete text of the GNU Lesser General Public License
- can be found in `/usr/share/common-licenses/LGPL-2' and
- `/usr/share/common-licenses/LGPL-2.1' and `/usr/share/common-licenses/LGPL-3'.
 
 Files: common/uproplist.h
 Copyright: 1991-2006, Unicode, Inc.
@@ -139,3 +155,11 @@ License: RSA
  .
  These notices must be retained in any copies of any part of this documentation
  and/or software.
+
+Files: desktop/org.recoll.recoll.appdata.xml
+Copyright: 2005-2024, Jean-Francois Dockes
+License: CC0-1.0
+
+License: CC0-1.0
+ On Debian systems, the complete text of this license can be found in
+ `/usr/share/common-licenses/CC0-1.0'
