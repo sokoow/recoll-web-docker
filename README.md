@@ -27,3 +27,5 @@ Recoll web UI project: https://framagit.org/medoc92/recollwebui.git
 Recoll itself: https://github.com/314eter/recoll
 
 S6 overlay: https://github.com/just-containers/s6-overlay
+
+@bpatsch: https://github.com/bpatsch/ - for updating versions of recoll in this repo
